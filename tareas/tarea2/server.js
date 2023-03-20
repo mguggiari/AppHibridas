@@ -56,3 +56,5 @@ const server = http.createServer (function(request, response){
     response.end();
 })
 server.listen(2022);
+
+//"cls clean server node server.js" limpia lo que viene antes en la consola cuando ejecutas el archivo todo en el package.json <scripts>

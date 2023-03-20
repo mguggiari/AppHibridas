@@ -1,0 +1,11 @@
+{
+  "name": "app-simple",
+  "version": "1.0.0",
+  "description": "probando en clase una app simple",
+  "main": "server.js",
+  "scripts": {
+    "server": "node server.js" 
+  },
+  "author": "",
+  "license": "ISC"
+}
