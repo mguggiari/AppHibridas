@@ -1,6 +1,6 @@
 //modulo que se encarga de manipular los datos
 
-import {readFile} from 'node:fs/promises';
+import {readFile, writeFile} from 'node:fs/promises';
 
 async function getProducts() {
     //obtiene los productos
@@ -31,7 +31,41 @@ async function getProductById(id){
         })
 }
 
+async function createProduct(product){
+    //me traigo los productos
+    const products = await getProducts()
+    const newProduct = {
+        ...product, //escribe todas las propiedades del objeto, spread operator
+        //le asigno un id
+        id: products.length + 1,
+    }
+    products.push(newProduct);
+    await writeFile('./data/products.json', JSON.stringify(products))
+    return newProduct;
+} 
+
+/* codigo "sucio"
+async function createProduct(product){
+    //me traigo los productos
+    return getProducts()
+        .then(function (products){
+            let newProduct = {
+                ...product,
+                //le asigno un id
+                id: products.length + 1,
+            }
+            //lo agrego al array
+            products.push(newProduct);
+            //lo guardo en el archivo
+            return writeFile('./data/products.json', JSON.stringify(products))
+        })
+        .then(function (){
+            //devuelvo el producto creado
+            return product;
+        })
+} */
 export {
     getProducts,   
-    getProductById
+    getProductById,
+    createProduct
 }

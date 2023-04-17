@@ -5,6 +5,9 @@ import * as controller from '../controllers/products.controllers.js ';
 const route = express.Router();
 
 route.get('/products', controller.getProducts)
+//misma ruta pero acciones distintas, si llega con get muestra el formulario. si llega con post, crea el producto
+route.get('/products/nuevo', controller.createProductFormPage)
+route.post('/products/nuevo', controller.createProduct)
 
 //si le pongo los dos puntos estoy indicando que tiene que venir product/"algo" y ese "algo", lo identificamos como idProduct. lo conocemos como PARAMETROS de URL 
 //patron de la url que va ser atendido es la funcion 

@@ -32,7 +32,29 @@ function getProductById(req, res) {
         })
 };
 
+function createProductFormPage(req, res) {  
+    res.send(view.createProductFormPage())
+}
+
+function createProduct(req, res) {  
+    const product = { 
+        name: req.body.name,
+        description: req.body.description,
+        price: req.body.price
+    }
+    //servicio se encarga de asignarle un id al nuevo producto
+    service.createProduct(product)
+    .then(function(newProduct){
+        res.send(view.createPage('Producto creado', `<p>Producto ${newProduct.name} creado con exito ${newProduct.id} </p>`))
+    })
+    .catch(function(error){
+        res.send(view.createPage('Error', `<p>Se produjo un error al crear el producto</p>`))
+    })
+}   
+
 export {
     getProducts,
-    getProductById
+    getProductById,
+    createProductFormPage,
+    createProduct
 }
