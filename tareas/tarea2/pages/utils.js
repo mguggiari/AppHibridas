@@ -1,10 +1,11 @@
+
 function createPage(title, content) {
     let html;
 
     html = '<!DOCTYPE html><html><head><meta charset="UTF-8">'
     html += '<title>' + title + '</title></head><body>'
 
-    html += '<a href="/products">Productos</a> | <a href="/products/nuevo">Nuevo Producto</a>'
+    html += '<a href="/alumnos">Productos</a> | <a href="/alumnos/nuevo">Nuevo Producto</a>'
 
     html += '<h1>Mi espectacular pagina web!</h1>'
 
@@ -16,16 +17,6 @@ function createPage(title, content) {
     return html
 }
 
-function createProductList(products) {
-    let content = '<ul>'
-    for (let i = 0; i < products.length; i++) {
-        content += '<li>' + products[i].name + '</li>'
-    }
-    content += '</ul>'
-    return content
-}
-
 export {
     createPage,
-    createProductList
 }
