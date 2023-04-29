@@ -5,11 +5,9 @@ function createPage(title, content) {
     html = '<!DOCTYPE html><html><head><meta charset="UTF-8">'
     html += '<title>' + title + '</title></head><body>'
 
-    html += '<a href="/alumnos">Productos</a> | <a href="/alumnos/nuevo">Nuevo Producto</a>'
+    html += '<a href="/alumnos">Listado de alumnos</a> | <a href="/alumnos/nuevo">Agregar nuevo alumno</a>'
 
-    html += '<h1>Mi espectacular pagina web!</h1>'
-
-
+    html += '<h1>Lista de alumnos</h1>'
 
     html += content
     html += '</body> </html>'
@@ -17,6 +15,16 @@ function createPage(title, content) {
     return html
 }
 
+function createListaAlumnos(alumnos) {
+    let content = '<ul>'
+    for (let i = 0; i < alumnos.length; i++) {
+        content += '<li>' + alumnos[i].name + '</li>'
+    }
+    content += '</ul>'
+    return content
+}
+
 export {
     createPage,
+    createListaAlumnos
 }
