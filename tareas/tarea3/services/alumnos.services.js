@@ -4,7 +4,7 @@ import { readFile, writeFile } from 'node:fs/promises';
 async function getAlumnos(filter = {}) {
     //obtiene los alumnos
     //lee el archivo y pasarlo array para poder devolverlo
-    return readFile('./data/alumnos.json')
+    return readFile('./data/students.json')
         .then(function (data){
             return JSON.parse(data); 
         })
@@ -30,7 +30,7 @@ async function getAlumnos(filter = {}) {
 }
 
 async function guardarAlumnos(alumnos) {
-    return writeFile('./data/alumnos.json', JSON.stringify(alumnos))
+    return writeFile('./data/students.json', JSON.stringify(alumnos))
 }
 
 async function getAlumnoByLegajo(legajo) {
