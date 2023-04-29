@@ -19,7 +19,7 @@ function createAlumnoPage(alumno) {
     let html = `<h1>${alumno.nombre} ${alumno.apellido} - ${alumno.año}</h1>`
     html += `<p>Legajo:${alumno.legajo}</p>`
 
-    html += `<a href="/alumnos/${alumno.legajo}/editar">Modificar</a>`
+    html += `<a href="/alumnos/${alumno.legajo}/editar">Modificar</a> | <a href="/alumnos/${alumno.legajo}/borrar">Eliminar</a>`
 
     return createPage(alumno.legajo, html)
 }
@@ -51,10 +51,24 @@ function editarAlumnoPage(alumno){
     return createPage('Modificar Alumno', html)
 }
 
+function borrarAlumnoPage(alumno) {
+    let html = `<h1>${alumno.nombre}${alumno.apellido}</h1>`
+    html += `<p>${alumno.año}</p>`
+    html += `<p>${alumno.legajo}</p>`
+
+    html += `<form action="/alumnos/${alumno.legajo}/borrar" method="POST">
+    <p>Esta segudo de que quiere eliminarlo?</p>
+        <button type="submit">Elimnar</button>
+    </form>`
+
+    return createPage(alumno.nombre, html)
+}
+
 export {
     createAlumnosListPage,
     createAlumnoPage,
     createPage,
     createAlumnoNuevo,
-    editarAlumnoPage
+    editarAlumnoPage,
+    borrarAlumnoPage
 }

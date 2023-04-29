@@ -82,11 +82,42 @@ function editarAlumno(req, res) {
         })
 }
 
+function borrarAlumnoPage(req, res) {
+    const legajo = req.params.AlumnoLegajo
+
+    service.getAlumnoByLegajo(legajo)
+        .then(function (alumno) {
+            if (alumno) {
+                res.send(view.borrarAlumnoPage(alumno))
+            }
+            else {
+                res.send(view.createPage('<h1>No se encontro el alumno solicitado</h1>'))
+            }
+        })
+
+}
+
+function borrarAlumno(req, res) {
+    const legajo = req.params.AlumnoLegajo
+
+    service.borrarAlumno(legajo)
+        .then(function (alumno) {
+            if (alumno) {
+                res.send(view.createPage('Alumno Eliminado', `<h2>El alumno con legajo #${alumno.legajo} fue eliminado con exito!</h2>`))
+            }
+            else {
+                res.send(view.createPage('<h1>No se encontro el producto solicitado</h1>'))
+            }
+        })
+}
+
 export {
     getAlumnos,
     getAlumnoByLegajo,
     createAlumnoNuevo,
     createAlumno,
     editarAlumnoPage,
-    editarAlumno
+    editarAlumno,
+    borrarAlumnoPage,
+    borrarAlumno
 }

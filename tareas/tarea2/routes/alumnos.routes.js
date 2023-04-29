@@ -12,6 +12,9 @@ route.post('/alumnos/nuevo', controller.createAlumno)
 route.get('/alumnos/:AlumnoLegajo/editar', controller.editarAlumnoPage)
 route.post('/alumnos/:AlumnoLegajo/editar', controller.editarAlumno)
 
+route.get('/alumnos/:AlumnoLegajo/borrar', controller.borrarAlumnoPage)
+route.post('/alumnos/:AlumnoLegajo/borrar', controller.borrarAlumno)
+
 route.get('/alumnos/:AlumnoLegajo', controller.getAlumnoByLegajo)
 
 export default route

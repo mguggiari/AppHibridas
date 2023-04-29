@@ -1,15 +1,30 @@
 
 import { readFile, writeFile } from 'node:fs/promises';
 
-async function getAlumnos() {
+async function getAlumnos(filter = {}) {
     //obtiene los alumnos
     //lee el archivo y pasarlo array para poder devolverlo
     return readFile('./data/alumnos.json')
         .then(function (data){
-            return JSON.parse(data); //convertir a objeto - json es un string
+            return JSON.parse(data); 
+        })
+        .then(function (alumnos) {
+            if (filter.deleted) {
+                const alumnosFilter = []
+
+                for (let i = 0; i < alumnos.length; i++) {
+                    if (!alumnos[i].deleted) {
+                        alumnosFilter.push(alumnos[i])
+                    }
+                }
+
+                return alumnosFilter
+            }
+            else {
+                return alumnos
+            }
         })
         .catch( function (err){
-            //si hay errror es factible que no exista el archivo
             return [];
         })
 }
@@ -68,9 +83,30 @@ async function editarAlumno(AlumnoLegajo, alumno) {
 
 }
 
+async function borrarAlumno(AlumnoLegajo) {
+    const alumnos = await getAlumnos()
+    let alumnoEliminado = null
+
+    for (let i = 0; i < alumnos.length; i++) {
+        if (alumnos[i].legajo == AlumnoLegajo) {
+            alumnos[i].deleted = true
+
+            alumnoEliminado = alumnos[i]
+            break;
+        }
+    }
+
+    if (alumnoEliminado) {
+        await guardarAlumnos(alumnos)
+    }
+
+    return alumnoEliminado
+}
+
 export {
     getAlumnos,
     getAlumnoByLegajo,
     createAlumno,
-    editarAlumno
+    editarAlumno,
+    borrarAlumno
 }
