@@ -55,7 +55,7 @@ async function createAlumno(alumno) {
 
     alumnos.push(nuevoAlumno)
 
-    await writeFile('./data/alumnos.json', JSON.stringify(alumnos))
+    await guardarAlumnos(alumnos)
 
     return nuevoAlumno
 }
