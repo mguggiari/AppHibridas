@@ -19,11 +19,42 @@ function createAlumnoPage(alumno) {
     let html = `<h1>${alumno.nombre} ${alumno.apellido} - ${alumno.año}</h1>`
     html += `<p>Legajo:${alumno.legajo}</p>`
 
+    html += `<a href="/alumnos/${alumno.legajo}/editar">Modificar</a>`
+
     return createPage(alumno.legajo, html)
+}
+
+function createAlumnoNuevo(){
+    let html = '<h1>Crear Alumno</h1>'
+    html += '<form action="/alumnos/nuevo" method="POST">'
+    html += '<input type="text" name="nombre" placeholder="Nombre">'
+    html += '<input type="text" name="apellido" placeholder="Apellido">'
+    html += '<input type="number" name="año" placeholder="Año">'
+    html += '<input type="number" name="legajo" placeholder="Legajo">'
+    html += '<button type="submit">Crear</button>'
+    html += '</form>'
+
+    return createPage('Crear Alumno', html)
+}
+
+function editarAlumnoPage(alumno){
+    let html = '<h1>Modificar Alumno</h1>'
+    html += 
+    `<form action="/alumnos/${alumno.legajo}/editar" method="POST">'
+    <input type="text" name="nombre" placeholder="Nombre" value="${alumno.nombre}">
+    <input type="text" name="apellido" placeholder="Apellido" value="${alumno.apellido}">
+    <input type="number" name="año" placeholder="Año" value="${alumno.año}">
+    <input type="number" name="legajo" placeholder="Legajo" value="${alumno.legajo}">
+    <button type="submit">Modificar</button>'
+    </form>`
+
+    return createPage('Modificar Alumno', html)
 }
 
 export {
     createAlumnosListPage,
     createAlumnoPage,
-    createPage
+    createPage,
+    createAlumnoNuevo,
+    editarAlumnoPage
 }

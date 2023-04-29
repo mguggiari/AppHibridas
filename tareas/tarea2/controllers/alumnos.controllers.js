@@ -23,8 +23,70 @@ function getAlumnoByLegajo(req, res) {
         })
 }
 
+function createAlumnoNuevo(req, res) {
+    res.send(view.createAlumnoNuevo())
+}
+
+function createAlumno(req, res) {
+    const alumno = {
+        nombre: req.body.nombre,
+        apellido: req.body.apellido,
+        año: req.body.año,
+        legajo: req.body.legajo,
+    }
+
+    service.createAlumno(alumno)
+        .then(function (nuevoAlumno) {
+            res.send(view.createPage('Alumno nuevo creado con exito', `<p>Alumno: ${nuevoAlumno.nombre} creado con el legajo ${nuevoAlumno.legajo}</p>`))
+        })
+        .catch(function (error) {
+            res.send(view.createPage('Error', `<p>Ocurrio un error</p>`))
+        })
+
+}
+
+function editarAlumnoPage(req, res) {
+
+    const legajo = req.params.AlumnoLegajo
+
+    service.getAlumnoByLegajo(legajo)
+        .then(function (alumno) {
+            if (alumno) {
+                res.send(view.editarAlumnoPage(alumno))
+            }
+            else {
+                res.send(view.createPage('<h1>No se encontro el alumno buscado</h1>'))
+            }
+        })
+
+}
+
+function editarAlumno(req, res) {
+
+    const legajo = req.params.AlumnoLegajo
+
+    const alumno = {
+        nombre: req.body.nombre,
+        apellido: req.body.apellido,
+        año: req.body.año
+    }
+
+    service.editarAlumno(legajo, alumno)
+        .then(function (alumno) {
+            if (alumno) {
+                res.send(view.createPage('Alumno Modificado', `<h2>El alumno con legajo #${alumno.legajo} fue modificado con exito!</h2>`))
+            }
+            else {
+                res.send(view.createPage('<h1>No se encontro el alumno solicitado</h1>'))
+            }
+        })
+}
 
 export {
     getAlumnos,
-    getAlumnoByLegajo
+    getAlumnoByLegajo,
+    createAlumnoNuevo,
+    createAlumno,
+    editarAlumnoPage,
+    editarAlumno
 }

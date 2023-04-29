@@ -1,5 +1,5 @@
 
-import {readFile} from 'node:fs/promises';
+import { readFile, writeFile } from 'node:fs/promises';
 
 async function getAlumnos() {
     //obtiene los alumnos
@@ -14,6 +14,10 @@ async function getAlumnos() {
         })
 }
 
+async function guardarAlumnos(alumnos) {
+    return writeFile('./data/alumnos.json', JSON.stringify(alumnos))
+}
+
 async function getAlumnoByLegajo(legajo) {
     return getAlumnos()
         .then(function (alumnos) {
@@ -26,7 +30,47 @@ async function getAlumnoByLegajo(legajo) {
         })
 }
 
+async function createAlumno(alumno) {
+    const alumnos = await getAlumnos()
+
+    const nuevoAlumno = {
+        ...alumno, 
+        id: alumnos.length + 1
+    }
+
+    alumnos.push(nuevoAlumno)
+
+    await writeFile('./data/alumnos.json', JSON.stringify(alumnos))
+
+    return nuevoAlumno
+}
+
+async function editarAlumno(AlumnoLegajo, alumno) {
+    const alumnos = await getAlumnos()
+    let alumnoEditado = null
+
+    for (let i = 0; i < alumnos.length; i++) {
+        if (alumnos[i].legajo == AlumnoLegajo) {
+            alumnos[i] = {
+                ...alumno,
+                legajo: alumnos[i].legajo
+            }
+            alumnoEditado = alumnos[i]
+            break;
+        }
+    }
+
+    if (alumnoEditado) {
+        await guardarAlumnos(alumnos)
+    }
+
+    return alumnoEditado
+
+}
+
 export {
     getAlumnos,
-    getAlumnoByLegajo
+    getAlumnoByLegajo,
+    createAlumno,
+    editarAlumno
 }
