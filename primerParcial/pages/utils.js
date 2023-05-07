@@ -8,8 +8,6 @@ function createPage(title, content) {
     html += '<link rel="stylesheet" href="/css/style.css">'
 
     html += '<title>' + title + '</title></head><body>'
-    html += '<div id="app">'
-    
     //nav
     html += 
         `<header class="navbar navbar-expand-md navbar-dark bd-navbar">
@@ -45,9 +43,11 @@ function createPage(title, content) {
                 </div>
             </nav>
         </header>`
-    
     html += content
-    html += '</div>'
+    html += 
+    `<footer class="bg-light">
+        <p class="m-0">Micaela Guggiari &copy; 2023 | App Hibridas | Brian Lara</p>
+    </footer>`
     html += '</body> </html>'
 
     return html

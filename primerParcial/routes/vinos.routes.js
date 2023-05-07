@@ -6,6 +6,6 @@ const route = express.Router();
 
 //route.get('/vinos', controller.getAllVinos)
 
-route.get('/vinos/:uva', controller.getVinoByUva);
+route.get('/vinos/:tipoUva', controller.getVinoByUva);
 
 export default route

@@ -7,7 +7,6 @@ const db = client.db("AH20231CP1");
 client.connect()
     .then(function(){
         console.log("Conectado con exito");
-        
     })
     .catch(function(){
         console.log("Ocurrio un error");

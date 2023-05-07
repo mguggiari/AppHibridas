@@ -2,23 +2,21 @@
 import * as service from '../services/vinos.services.js';
 import * as view from '../views/vinos.views.js';
 
-// function getAllVinos(req, res) {
-//     service.getAllVinos()
-//         .then(function (vinos) {
-//             res.send(view.createProductListPage(vinos))
-//         })
-// }
+function getAllVinos(req, res) {
+    service.getAllVinos()
+        .then(function (vinos) {
+            console.log(vinos)
+        })
+}
 
 //sections
 function getVinoByUva(req, res) {
-    
-    res.set('title', req.params.uva);
+    let tipoUva = req.params.tipoUva;
 
-    let uva = req.params.uva;
-    service.getVinoByUva(uva)
-        .then(function(vinos) {
-            if (vinos){
-                res.send(view.createPageSectionVinos(vinos))
+    service.getVinoByUva(tipoUva)
+        .then(function(wines) {
+            if (wines){
+                res.send(view.createPageSectionVinos(wines))
             }
             else{
                 res.send(view.createPage('El vino que buscas no se encuentra en nuestra base de datos.'))
@@ -27,5 +25,6 @@ function getVinoByUva(req, res) {
 }
 
 export {
-    getVinoByUva,
+    getAllVinos,
+    getVinoByUva
 }
