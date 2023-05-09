@@ -1,15 +1,15 @@
 
 import * as service from "../../services/proyectos.services.js";
 
-function getAllVinos(req, res) {
+function getAllSections(req, res) {
     const filtro = req.query
 
-    service.getAllVinos(filtro)
-        .then(function (wines) {
-            res.status(200).json(wines); 
+    service.getAllSections(filtro)
+        .then(function (proyectos) {
+            res.status(200).json(proyectos); 
         })
         .catch(function (error) {
-            res.status(500).json({ message: "Error al traer los vinos" });
+            res.status(500).json({ message: "Error al traer los proyectos" });
         });
 }
 
@@ -46,6 +46,6 @@ function modificarDetalleVino(req, res){
 
 
 export { 
-    getAllVinos,
+    getAllSections,
     modificarDetalleVino
 };

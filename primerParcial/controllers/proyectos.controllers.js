@@ -2,8 +2,8 @@
 import * as service from '../services/proyectos.services.js';
 import * as view from '../views/proyectos.views.js';
 
-function getAllVinos(req, res) {
-    service.getAllVinos()
+function getAllSections(req, res) {
+    service.getAllSections()
         .then(function (wines) {
             console.log(wines)
         })
@@ -24,21 +24,9 @@ function getProyectoBySeccion(req, res) {
         })
 }
 
-// function getVinoById(req, res) {
-//     let idVino = req.params.idVino;
 
-//     service.getVinoById(idVino)
-//         .then(function(wine) {
-//             if(wine){
-//                 res.send(view.createPageDetalleVino(wine))
-//             }
-//             else {
-//                 res.send(view.createPage('<p>El vino que buscas no se encuentra disponible actualmente</p>'))
-//             }
-//         })
-// }   
 
 export {
-    getAllVinos,
+    getAllSections,
     getProyectoBySeccion
 }
