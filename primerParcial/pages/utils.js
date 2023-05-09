@@ -22,22 +22,19 @@ function createPage(title, content) {
                             <a class="nav-link p-2" href="/">Inicio</a>
                         </li>
                         <li class="nav-item col-6 col-md-auto">
-                            <a class="nav-link p-2"  href="/vinos/Malbec">Malbec</a>
+                            <a class="nav-link p-2"  href="/proyectos/Mobile">Mobile</a>
                         </li>
                         <li class="nav-item col-6 col-md-auto">
-                            <a class="nav-link p-2"  href="/vinos/Chardonnay">Chardonnay</a>
+                            <a class="nav-link p-2"  href="/proyectos/Landing%20Page">Landing Page</a>
                         </li>
                         <li class="nav-item col-6 col-md-auto">
-                            <a class="nav-link p-2"  href="/vinos/Syrah">Syrah</a>
+                            <a class="nav-link p-2"  href="/proyectos/Web%20App">Web App</a>
                         </li>
                         <li class="nav-item col-6 col-md-auto">
-                            <a class="nav-link p-2"  href="/vinos/Cabernet%20Sauvignon">Cabernet Sauvignon</a>
+                            <a class="nav-link p-2"  href="/proyectos/e%2DCommerce">e-Commerce</a>
                         </li>
                         <li class="nav-item col-6 col-md-auto">
-                            <a class="nav-link p-2"  href="/vinos/Cabernet%20Franc">Cabernet Franc</a>
-                        </li>
-                        <li class="nav-item col-6 col-md-auto">
-                            <a class="nav-link p-2" href="/contactanos.html" >Contactanos</a>
+                            <a class="nav-link p-2"  href="/proyectos/Games">Games</a>
                         </li>
                     </ul>
                 </div>
