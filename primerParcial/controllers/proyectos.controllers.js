@@ -2,10 +2,11 @@
 import * as service from '../services/proyectos.services.js';
 import * as view from '../views/proyectos.views.js';
 
-function getAllSections(req, res) {
-    service.getAllSections()
-        .then(function (wines) {
-            console.log(wines)
+//todos
+function getAllProyectos(req, res) {
+    service.getAllProyectos()
+        .then(function (proyectos) {
+            console.log(proyectos)
         })
 }
 
@@ -24,9 +25,7 @@ function getProyectoBySeccion(req, res) {
         })
 }
 
-
-
 export {
-    getAllSections,
+    getAllProyectos,
     getProyectoBySeccion
 }
