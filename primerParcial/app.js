@@ -8,7 +8,6 @@ const app = express();
 app.use(express.urlencoded({extended: true}))
 
 app.use('/api', express.json()) 
-
 app.use('/', express.static('public'))
 app.use('/index.html', express.static('public/index.html'))
 

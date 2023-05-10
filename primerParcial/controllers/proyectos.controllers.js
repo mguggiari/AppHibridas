@@ -4,7 +4,7 @@ import * as view from '../views/proyectos.views.js';
 
 //todos
 function getAllProyectos(req, res) {
-    service.getAllProyectos()
+    service.allProyectos()
         .then(function (proyectos) {
             console.log(proyectos)
         })
@@ -14,7 +14,7 @@ function getAllProyectos(req, res) {
 function getProyectoBySeccion(req, res) {
     let tipoSeccion = req.params.tipoSeccion;
 
-    service.getProyectoBySeccion(tipoSeccion)
+    service.proyectoBySeccion(tipoSeccion)
         .then(function(proyectos) {
             if (proyectos){
                 res.send(view.createPageSections(proyectos))
