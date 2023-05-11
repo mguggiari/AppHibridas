@@ -20,7 +20,7 @@ function getProyectoBySeccion(req, res) {
                 res.send(view.createPageSections(proyectos))
             }
             else{
-                res.send(view.createPage('El proyecto que buscas no se encuentra en nuestra base de datos.'))
+                res.send(view.createPage('La seccion que buscas no se encuentra en nuestra base de datos.'))
             }
         })
 }

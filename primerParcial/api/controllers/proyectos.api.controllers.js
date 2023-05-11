@@ -3,15 +3,41 @@ import * as service from "../../services/proyectos.services.js";
 
 //todos
 function getAllProyectos(req, res) {
-    //const filtro = req.query
+    const filtro = req.query
 
-    service.allProyectos()
+    service.allProyectos(filtro)
         .then(function (proyectos) {
             res.status(200).json(proyectos); 
         })
         .catch(function (error) {
             res.status(500).json({ message: "Error al traer los proyectos" });
         });
+}
+
+//filtro por seccion
+function getSection(req, res) {
+    let tipoSeccion = req.params.tipoSeccion
+
+    service.proyectoBySeccion(tipoSeccion)
+        .then(function (section) {
+            res.status(200).json(section); 
+        })
+        .catch(function (error) {
+            res.status(500).json({message: 'Error al obtener las secciones del proyecto'})
+        })
+}
+
+//filtro por technologies
+function getTechnologies(req, res) {
+    let tipoTecnologia = req.params.tipoTecnologia;
+
+    service.proyectoByTechnologies(tipoTecnologia)
+        .then(function (technologies) {
+            res.status(200).json(technologies); 
+        })
+        .catch(function (error) {
+            res.status(500).json({message: 'Error al obtener las tecnologias del proyecto'})
+        })
 }
 
 //nuevo
@@ -96,6 +122,8 @@ function eliminarProyecto(req, res) {
 
 export { 
     getAllProyectos,
+    getSection,
+    getTechnologies,
     nuevoProyecto,
     modificarProyecto,
     eliminarProyecto
