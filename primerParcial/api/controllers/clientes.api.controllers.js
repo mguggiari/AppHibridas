@@ -11,17 +11,6 @@ function allClientes(req, res) {
         });
 }
 
-function getProyectobyCliente(req, res) {
-
-    const idCliente = req.params.idCliente
-    
-    console.log(idCliente)
-    service.clienteId(idCliente)
-        .then(function () {
-            res.status(200).json(idCliente)
-        })
-}
-
 function crearCliente(req, res) {
 
     const cliente = {
@@ -40,6 +29,5 @@ function crearCliente(req, res) {
 
 export { 
     allClientes,
-    getProyectobyCliente,
     crearCliente
 }

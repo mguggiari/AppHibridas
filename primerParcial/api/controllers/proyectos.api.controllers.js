@@ -41,40 +41,28 @@ function getSection(req, res) {
         })
 }
 
-//filtro por technologies
-function getTechnologies(req, res) {
-    let tipoTecnologia = req.params.tipoTecnologia;
-
-    service.proyectoByTechnologies(tipoTecnologia)
-        .then(function (technologies) {
-            res.status(200).json(technologies); 
-        })
-        .catch(function (error) {
-            res.status(500).json({message: 'Error al obtener las tecnologias del proyecto'})
-        })
-}
-
 //nuevo
-function nuevoProyecto(req, res) {
+// function nuevoProyecto(req, res) {
+    
+//     const clienteId =  req.params.clienteId
 
-    const proyecto = {
-        name: req.body.name,
-        description: req.body.description,
-        link: req.body.link,
-        img: req.body.img,
-        technologies: req.body.technologies,
-        section: req.body.section,
-        clienteId: req.body.clienteId
-    }
+//     const proyecto = {
+//         name: req.body.name,
+//         description: req.body.description,
+//         link: req.body.link,
+//         img: req.body.img,
+//         technologies: req.body.technologies,
+//         section: req.body.section
+//     }
 
-    service.nuevoProyecto(proyecto)
-        .then(function (proyecto) {
-            res.status(201).json(proyecto)
-        })
-        .catch(function (error) {   
-            res.status(500).json({ error: { message: `Error al crear el proyectoo ${proyecto.name}` } })
-        })
-}
+//     service.nuevoProyecto(clienteId, proyecto)
+//         .then(function (proyecto) {
+//             res.status(201).json(proyecto)
+//         })
+//         .catch(function (error) {   
+//             res.status(500).json({ error: { message: `Error al crear el proyectoo ${proyecto.name}` } })
+//         })
+// }
 
 //modificar
 function modificarProyecto(req, res) {
@@ -131,8 +119,6 @@ function eliminarProyecto(req, res) {
 export { 
     getAllProyectos,
     getSection,
-    getTechnologies,
-    nuevoProyecto,
     modificarProyecto,
     eliminarProyecto,
     getProyectoById

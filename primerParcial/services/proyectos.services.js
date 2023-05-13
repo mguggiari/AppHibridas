@@ -1,8 +1,8 @@
 
-import {MongoClient, ObjectId} from 'mongodb';
+import {MongoClient, ObjectId} from 'mongodb'
 
-const client = new MongoClient('mongodb://127.0.0.1:27017');
-const db = client.db('AH20231CP1');
+const client = new MongoClient('mongodb://127.0.0.1:27017')
+const db = client.db('AH20231CP1')
 
 async function allProyectos(filtro = {}){
     await client.connect()
@@ -25,14 +25,8 @@ async function proyectoBySeccion(section){
     return db.collection("Projects").find({section}).toArray()
 }
 
-async function nuevoProyecto(proyecto) {
-    await client.connect()
-    await db.collection("Projects").insertOne(proyecto)
-    return proyecto
-}
-
 async function modificarProyecto(proyectoId, proyecto) {
-    console.log(proyectoId, proyecto)
+    //console.log(proyectoId, proyecto)
     await client.connect()
     await db.collection("Projects").updateOne({ _id: new ObjectId(proyectoId) }, { $set: proyecto })
     return proyecto
@@ -56,7 +50,6 @@ export {
     allProyectos,
     proyectoBySeccion,
     proyectoById,
-    nuevoProyecto,
     modificarProyecto,
-    eliminarProyecto,
+    eliminarProyecto
 }
