@@ -17,8 +17,7 @@ function crearCliente(req, res) {
         nombre: req.body.nombre,
         img: req.body.img,
         alt: req.body.alt,
-        descripcion: req.body.descripcion,
-        proyectos: req.body.proyectos
+        descripcion: req.body.descripcion
     }
 
     service.crearCliente(cliente)
