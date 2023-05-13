@@ -11,7 +11,35 @@ function allClientes(req, res) {
         });
 }
 
+function getProyectobyCliente(req, res) {
+
+    const idCliente = req.params.idCliente
+    
+    console.log(idCliente)
+    service.clienteId(idCliente)
+        .then(function () {
+            res.status(200).json(idCliente)
+        })
+}
+
+function crearCliente(req, res) {
+
+    const cliente = {
+        nombre: req.body.nombre,
+        img: req.body.img,
+        alt: req.body.alt,
+        descripcion: req.body.descripcion,
+        proyectos: req.body.proyectos
+    }
+
+    service.crearCliente(cliente)
+        .then(function (cliente) {
+            res.status(201).json(cliente)
+        })
+}
 
 export { 
-    allClientes
-};
+    allClientes,
+    getProyectobyCliente,
+    crearCliente
+}

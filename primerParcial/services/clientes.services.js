@@ -6,9 +6,24 @@ const db = client.db('AH20231CP1');
 
 async function allClientes(){
     await client.connect()
-    return db.collection("Clientes").find().toArray()
+    return db.collection("Cliente").find().toArray()
+}
+
+async function clienteId(idCliente){ 
+    await client.connect()
+    return db.collection("Cliente").findOne({  _id: new ObjectId(idCliente)})
+}
+
+async function crearCliente(cliente) {
+    await client.connect()
+
+    db.collection("Cliente").insertOne(cliente)
+
+    return cliente
 }
 
 export {
-    allClientes
+    allClientes,
+    clienteId,
+    crearCliente
 }

@@ -7,24 +7,22 @@ const db = client.db('AH20231CP1');
 async function allProyectos(filtro = {}){
     await client.connect()
 
-    const tecnologias = {}
-
-    if(filtro?.technologies){
-        tecnologias.$text = {$search: filtro.technologies}
+    const filtroMongo = {};
+    
+    if (filtro?.section) {
+        filtroMongo.section = filtro.section;
     }
 
-    return db.collection("Projects").find(tecnologias).toArray()
+    if(filtro?.technologies){
+        filtroMongo.$text = {$search: filtro.technologies}
+    }
+
+    return db.collection("Projects").find(filtroMongo).toArray()
 }
 
 async function proyectoBySeccion(section){
-    //console.log(section)
     await client.connect()
     return db.collection("Projects").find({section}).toArray()
-}
-
-async function proyectoByTechnologies(technologies){
-    await client.connect()
-    return db.collection("Projects").find({technologies}).toArray()
 }
 
 async function nuevoProyecto(proyecto) {
@@ -49,11 +47,16 @@ async function eliminarProyecto(proyectoId) {
     }
 }
 
+async function proyectoById(proyectoId){
+    await client.connect()
+    return db.collection("Projects").findOne({ _id: new ObjectId(proyectoId) })
+}
 
 export {
     allProyectos,
     proyectoBySeccion,
+    proyectoById,
     nuevoProyecto,
     modificarProyecto,
-    eliminarProyecto
+    eliminarProyecto,
 }

@@ -14,6 +14,20 @@ function getAllProyectos(req, res) {
         });
 }
 
+//proyecto por id
+function getProyectoById(req, res) {
+    const proyectoId = req.params.proyectoId
+    
+    service.proyectoById(proyectoId)
+        .then(function (proyecto) {
+            res.status(200).json(proyecto); 
+        }
+        )
+        .catch(function (error) {
+            res.status(500).json({ message: "Error al traer el proyecto" });
+        })
+}
+
 //filtro por seccion
 function getSection(req, res) {
     let tipoSeccion = req.params.tipoSeccion
@@ -50,7 +64,7 @@ function nuevoProyecto(req, res) {
         img: req.body.img,
         technologies: req.body.technologies,
         section: req.body.section,
-        //tags: req.body.tags
+        clienteId: req.body.clienteId
     }
 
     service.nuevoProyecto(proyecto)
@@ -87,12 +101,6 @@ function modificarProyecto(req, res) {
     if (req.body.section) {
         proyecto.section = req.body.section
     }
-    
-
-    // if (req.body.tags) {
-    //     proyecto.tags = req.body.tags
-    // }
-
 
     service.modificarProyecto(proyectoId, proyecto, nombre)
         .then(function (proyecto) {
@@ -126,5 +134,6 @@ export {
     getTechnologies,
     nuevoProyecto,
     modificarProyecto,
-    eliminarProyecto
+    eliminarProyecto,
+    getProyectoById
 };

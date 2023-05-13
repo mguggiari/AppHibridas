@@ -9,7 +9,7 @@ app.use(express.urlencoded({extended: true}))
 
 app.use('/api', express.json()) 
 app.use('/', express.static('public'))
-app.use('/index.html', express.static('public/index.html'))
+app.use('/public/img/',express.static('img/logo.png'))
 
 app.use('/', ProjectsRoute)
 app.use('/api', ProjectsRouteApi)
