@@ -1,0 +1,17 @@
+
+.product-list__form{
+    padding: 1rem;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+}
+
+.product-list__filter{
+    font-size: 1rem;
+    flex: 1;
+    margin-left: 1rem;
+    padding: .5em 1em;
+    border-radius: 5px;
+    border: 1px solid #cccccc80;
+    box-shadow: 0 0 5px #cccccc88;
+}
